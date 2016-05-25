@@ -14,7 +14,7 @@ PASSWORD = 'default'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-@app.route('/') # koi route da trigger-va funkciqta
+@app.route('/')
 def index():
     return 'Welcome to the Brilliant Dashing Zestful system for buying tickets :)'
 
@@ -40,10 +40,10 @@ def teardown_request(exception):
 @app.route('/')
 def show_entries():
     cur = g.db.execute('select seat_number, name,  id_number, destination, price from entries order by seat.number asc')
-    #entries = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]--> tova nqma da e taka
+    #entries = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]--> това няма да е така
     return render_template('show_entries.html', entries=entries)
 
-@app.route('/add', methods=['POST']) # slujitelite na BDZ shte trqbva da pravqt tova
+@app.route('/add', methods=['POST']) # ще се прави от служител на БДЖ
 def add_entry():
     if not session.get('logged_in'):
         abort(401)
@@ -55,8 +55,7 @@ def add_entry():
     return redirect(url_for('show_entries'))
 
 @app.route('/login', methods=['GET', 'POST'])
-def login(): # tuk moje bi da ima i vyzmojnost za online kupuvane
-            # toest drug username i parola ??
+def login(): # ако има възможност за купуване online, друг username и password?
     error = None
     if request.method == 'POST':
         if request.form['username'] != app.config['USERNAME']:
