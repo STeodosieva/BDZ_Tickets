@@ -1,5 +1,4 @@
 # BDZ_Tickets
-Brilliant Dashing Zestful system for buying tickets
 
 Това ще бъде Flask приложение, представляващо система за купуване на билети за БДЖ с възможност за online закупуване на билет.
 
